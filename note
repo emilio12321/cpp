@@ -1,0 +1,843 @@
+#memo programmation c++
+#include <string> == quand on ecrit des string
+#################################cout == permet d'Afficher un message dans la console
+##################################// ou /* */ == permet d.ecrire un commentaire
+
+#########################################################################[CONVENTION D,UNE VARIABLE IMPORTANT] ==	
+1.les noms de variables commencent par une minuscule ;							(age)
+2.si le nom se décompose en plusieurs mots, ceux-ci sont collés les uns aux autres ;			(ageUtilisateur)
+3.chaque nouveau mot (excepté le premier) commence par une majuscule.					(ageUtilisateur)
+####################################################TYPES DE VARIABLE;
+
+			||Nom du type	|| Ce qu'il peut contenir     						||Exemple
+			||1.bool	|| Une valeur parmi deux possibles, vrai (true) ou faux (false).	||(true or false)
+			||2.char	|| Un caractère.							||('a')
+			||3.int		|| Un nombre entier.							||(12)
+			||4.unsigned int|| Un nombre entier positif ou nul.					||(12 ou 0)
+			||5.double	|| Un nombre à virgule.							||(24.76)
+			||6.string	|| Une chaîne de caractères, c'est-à-dire un mot ou une phrase.		||"salut je m'apelle emile"
+
+
+################################################################################syntaxes pour déclaration une variable 
+
+	TYPES NOM (VALEUR);     ex: int ageUtilisateur(16) ;  		[int , double]   sa veut dire qu'on a stoker une valeur 16 dans la case ageUtilisateur
+				ex: bool estMonAmi(true);     		[bool]
+				ex:char lettre('a');          		[char]
+				ex:string nomUtilisateur("emile drolet")[string]
+
+ASTUCE : ON PEUT DECLARER PLUSIEUR VARIABLE EN MEME TEMPS 	
+				
+				ex: int a(2),b(4),c(-1);  //On déclare trois cases mémoires nommées a, b et c et  qui contiennent respectivement les valeurs 2, 4 et -1
+				ex: string prenom("Albert"), nom("Einstein"); //On déclare deux cases pouvant contenir des chaînes de caractères
+
+
+#####################################################################################syntaxes pour déclarer sans initialisé 
+	
+	TYPES NOM;
+
+	ex: #include <iostream>
+	    #include <string>
+	    using namespace std;
+	    int main()
+ 	    {
+    		string nomJoueur;  
+    		int nombreJoueurs;
+   		 bool aGagne;         //Le joueur a-t-il gagné ?
+
+   		return 0;
+	   }
+	
+
+################################################################################syntaxes :afficher une valeur d'une variable 
+		
+	COUT << nomVariable ;
+
+FACON1:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int ageUtilisateur(16);                                           == Votre age est:16 
+
+    cout << "Votre age est : ";
+    cout << ageUtilisateur;
+    return 0;
+}
+
+FACONS 2:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int ageUtilisateur(16);
+    cout << "Votre age est : " << ageUtilisateur << endl;
+    return 0;
+}
+
+VERSION 2 DE FA#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int qiUtilisateur(150);
+    string nomUtilisateur("Albert Einstein");                                                                   == Vous vous appelez Albert Einstein et votre QI vaut 150
+    
+    cout << "Vous vous appelez " << nomUtilisateur << " et votre QI vaut " << qiUtilisateur << endl;
+    return 0;
+}
+########################################## declaration d'une reférence
+
+      TYPES NOUVEAUNOM(nompourfaire lareference)
+
+
+	 ex:	int ageUtilisateur(16);  //Déclaration d'une variable.
+
+		int& maVariable(ageUtilisateur); //Déclaration d'une référence nommée maVariable qui est accrochée à la variable ageUtilisateur
+
+	exemple plus complet:::::::::::::
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int ageUtilisateur(18); //Une variable pour contenir l'âge de l'utilisateur
+    
+    int& maReference(ageUtilisateur); //Et une référence sur la variable 'ageUtilisateur'
+
+    										                           ==Vous avez 18 ans. (via variable)
+													     Vous avez 18 ans. (via reference)
+    cout << "Vous avez " << ageUtilisateur << "  ans. (via variable)" << endl;
+    //On affiche, de la manière habituelle
+
+    cout << "Vous avez " << maReference << " ans. (via reference)" << endl;
+    //Et on affiche en utilisant la référence
+    
+    return 0;
+}
+
+#################################################### demander des information de l'utilisateur
+
+	CIN >> nomVariable; 
+
+
+
+	ex:  
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    cout << "Quel age avez-vous ?" << endl;
+
+    int ageUtilisateur(0); //On prepare une case mémoire pour stocker un entier
+
+    cin >> ageUtilisateur; //On fait entrer un nombre dans cette case                                	=== Quel age avez-vous ?
+													    23
+    cout << "Vous avez " << ageUtilisateur << " ans !" <<  endl; //Et on l'affiche			    Vous avez 23 ans !
+
+    return 0;
+}
+
+
+exmple plus complet:::::
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    cout << "Quel est votre prenom ?" << endl;
+    string nomUtilisateur("Sans nom"); //On crée une case mémoire pour contenirune chaine de caractères
+    cin >> nomUtilisateur; //On remplit cette case avec ce qu'écrit l'utilisateur
+
+    cout << "Combien vaut pi ?" << endl;
+    double piUtilisateur(-1.); //On crée une case mémoire pour stocker un nombre réel
+    cin >> piUtilisateur; //Et on remplit cette case avec ce qu'écritl'utilisateur
+     
+    cout << "Vous vous appelez " << nomUtilisateur << " et vous pensez que pivaut " << piUtilisateur << "." << endl;
+
+    return 0;
+}
+
+
+######################################## le probleme d'espace 
+
+	GETLINE(cin, nomVariable);
+
+exemple du probleme ;;;;
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    cout << "Quel est votre prenom ?" << endl;
+    string nomUtilisateur("Sans nom"); //On crée une case mémoire pour contenirune chaine de caractères
+    cin >> nomUtilisateur; //On remplit cette case avec ce qu'écrit l'utilisateur
+
+    cout << "Combien vaut pi ?" << endl;                   
+    double piUtilisateur(-1.); //On crée une case mémoire pour stocker un nombre réel
+    cin >> piUtilisateur; //Et on remplit cette case avec ce qu'écritl'utilisateur
+     
+    cout << "Vous vous appelez " << nomUtilisateur << " et vous pensez que pivaut " << piUtilisateur << "." << endl;
+
+    return 0;
+} 
+
+REPONSE=Quel est votre prenom ?
+	Albert Einstein
+	Combien vaut pi ?
+	Vous vous appelez Albert et vous pensez que pi vaut 0.
+ 			    ^^                   
+ 
+solution probleme !!!! ::::::
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    cout << "Quel est votre nom ?" << endl;
+    string nomUtilisateur("Sans nom"); //On crée une case mémoire pour contenir une chaine de caractères
+    getline(cin, nomUtilisateur); //On remplit cette case avec toutela ligne que l'utilisateur a écrit
+
+    cout << "Combien vaut pi ?" << endl;
+    double piUtilisateur(-1.); //On crée une case mémoire pour stockerun nombre réel
+    cin >> piUtilisateur; //Et on remplit cette case avec ce qu'écritl'utilisateur
+     
+    cout << "Vous vous appelez " << nomUtilisateur << " et vous pensez que pivaut " << piUtilisateur << "." << endl;
+
+    return 0;
+}
+
+
+REPONSE:Quel est votre nom ?
+	Albert Einstein
+	Combien vaut pi ?
+	3.14
+	Vous vous appelez Albert Einstein et vous pensez que pi vaut 3.14.
+
+################################################################################################
+################################################################################################
+#################################################################################################
+Demander d'abord la valeur de pi
+
+Si l'on utilise d'abord cin >> puis getline(), par exemple pour demander la valeur de pi avant de demander le nom, le code ne fonctionne pas. L'ordinateur ne demande pas son nom à l'utilisateur et affiche n'importe quoi. 
+Pour pallier ce problème, il faut ajouter la ligne cin.ignore() après l'utilisation des chevrons.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    cout << "Combien vaut pi ?" << endl;
+    double piUtilisateur(-1.); //On crée une case mémoire pour stocker unnombre réel
+    cin >> piUtilisateur; //Et on remplit cette case avec ce qu'écritl'utilisateur
+
+    cin.ignore();
+
+    cout << "Quel est votre nom ?" << endl;
+    string nomUtilisateur("Sans nom"); //On crée une case mémoire pour contenir une chaine de caractères
+    getline(cin, nomUtilisateur); //On remplit cette case avec toute la ligne que l'utilisateur a écrit
+     
+    cout << "Vous vous appelez " << nomUtilisateur << " et vous pensez que pivaut " << piUtilisateur << "." << endl;
+
+    return 0;
+}
+Avec cela, plus de souci. 
+Quand on mélange l'utilisation des chevrons et de getline(), il faut toujours placer l'instruction cin.ignore() après la ligne cin>>a. C'est une règle à apprendre.
+
+############################################################################################################
+############################################################################################################
+############################################################################################################
+
+
+
+
+
+#################################### modifier une variable ((AFFECTION !!!))
+
+	a=b           
+
+[IMPORTANT]La valeur de b n'a pas changé ! Il est important de se rappeler que, lors d'une affectation, seule la variable à gauche du symbole = est modifiée. 
+Cela ne veut pas dire que les deux variables sont égales ! Juste que le contenu de celle de droite est copié dans celle de gauche.
+
+
+ex:
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a(4), b(5); //Déclaration de deux variables
+
+    cout << "a vaut : " << a << " et b vaut : " << b << endl;
+
+    cout << "Affectation !" << endl;
+    a = b; //Affectation de la valeur de 'b' à 'a'.
+
+    cout << "a vaut : " << a << " et b vaut : " << b << endl;
+
+    return 0;
+}
+
+
+REPONSE: 
+
+a vaut : 4 et b vaut : 5 
+Affectation !
+a vaut : 5 et b vaut : 5
+
+
+
+calculette de base
+
+ex:
+#include <iostream>
+using namespace std;
+
+int main()  
+{
+  int resultat(0), a(5), b(8);
+
+  resultat = a + b;
+
+  cout << "5 + 8 = " << resultat << endl;
+  return 0;
+}
+
+
+REPONSE:  5 + 8 = 13
+
+exempls plus complexe:;;;::::::;;;;
+
+
+int a(2), b(4), c(5), d; //Quelques variables
+d = ((a+b) * c ) - c; //Un calcul compliqué !
+
+REPONSE : 25
+
+
+
+################################################################################### déclarer des variables non modifiables (constante)
+
+	int const nombreNiveaux(10);
+	string const motDePasse("wAsTZsaswQ"); //Le mot de passe secret
+	double const pi(3.14);
+	unsigned int const pointsDeVieMaximum(100); //Le nombre maximal de points de vie
+
+exemple :;;;:::
+
+
+###################################################################################  INCRÉMENTATION
+L'incrémentation
+
+Une des opérations les plus courantes en informatique consiste à ajouter « 1 » à une variable. Pensez par exemple aux cas suivants :
+
+passer du niveau 4 au niveau 5 de votre jeu ;
+augmenter le nombre de points de vie du personnage ;
+ajouter un joueur à la partie ;
+etc
+
+
+
+int nombreJoueur(4); //Il y a 4 joueurs dans la partie
+++nombreJoueur;	//À partir d'ici, il y a 5 joueurs
+
+################################################################################ La décrémentation
+
+La décrémentation est l'opération inverse, soustraire 1 à une variable.
+
+int nombreJoueur(4); //Il y a 4 joueurs dans la partie
+--nombreJoueur; //On en enlève un
+//À partir d'ici, il y a 3 joueurs
+
+
+################################ Les autres opérations
+
+
+double nombre(456); 
+nombre /= 3;
+//À partir d'ici, nombre vaut 456/3 = 152
+Il existe des raccourcis pour les 5 opérations de base, c'est-à-dire +=, -=, *=, /= et %=. 
+Je suis sûr que vous n'allez plus pouvoir vous en passer. Les essayer, c'est les adopter.
+
+Je vous propose un petit exemple pour la route.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   double nombre(5.3);
+   nombre += 4.2;       //'nombre' vaut maintenant 9.5
+   nombre *= 2.;        //'nombre' vaut maintenant 19
+   nombre -= 1.;        //'nombre' vaut maintenant 18
+   nombre /= 3.;        //'nombre' vaut maintenant 6
+   return 0;
+}
+
+############################################################# en tete cmath
+
+	#include <cmath>
+
+
+comment l'utiliser !!!
+
+
+
+Pour utiliser une fonction mathématique, on écrit le nom de la fonction suivi, entre parenthèses, de la valeur à calculer. On utilise alors l'affectation pour stocker le résultat dans une variable.
+
+resultat = fonction(valeur);
+C'est comme en math quand on écrit y=f(x). Il faut juste se souvenir du nom compliqué des fonctions. Pour la racine carrée, cela donnerait resultat = sqrt(valeur);.
+
+Prenons un exemple complet, je pense que vous allez comprendre rapidement le principe.
+
+#include <iostream>
+#include <cmath>  //Ne pas oublier cette ligne 
+using namespace std;
+
+int main()
+{
+    double const nombre(16); //Le nombre dont on veut la racine
+                             //Comme sa valeur ne changera pas on met 'const'
+    double resultat;         //Une case mémoire pour stocker le résultat
+
+    resultat = sqrt(nombre);  //On effectue le calcul !
+
+    cout << "La racine de " << nombre << " est " << resultat << endl;
+
+    return 0;
+}
+Voyons ce que cela donne.
+REPONSE::
+La racine de 16 est 4
+
+############################################################################################### cmath suite 
+
+Comme toujours, il y a un cas particulier : la fonction puissance. Comment calculer 45 ?
+
+Si je veux calculer 45, je vais devoir procéder ainsi :
+
+double const a(4);
+double const b(5);
+double const resultat = pow(a,b);
+Je déclare une variable (constante) pour mettre le 4, une autre pour stocker le 5 et finalement une dernière pour le résultat. Rien de nouveau jusque là. J'utilise la fonction pow() pour effectuer le calcul et j'utilise le symbole = pour initialiser la variable resultat avec la valeur calculée par la fonction.
+
+Nous pouvons donc reprendre l'exercice précédent et remplacer l'addition par notre nouvelle amie, la fonction puissance. Je vous laisse essayer.
+
+Voici ma version :
+
+#include <iostream>
+#include <cmath>  //Ne pas oublier !
+using namespace std;
+
+int main()
+{
+   double a(0), b(0); //Déclaration des variables utiles
+
+   cout << "Bienvenue dans le programme de calcul de a^b !" << endl;
+
+   cout << "Donnez une valeur pour a : "; //On demande le premier nombre
+   cin >> a;
+
+   cout << "Donnez une valeur pour b : "; //On demande le deuxième nombre
+   cin >> b;
+
+   double const resultat(pow(a, b)); //On effectue l'opération
+   //On peut aussi écrire comme avant :
+   //double const resultat = pow(a,b);
+   //Souvenez-vous des deux formes possibles
+   //De l'initialisation d'une variable
+
+   cout << a << " ^ " << b << " = " << resultat << endl;
+   //On affiche le résultat
+
+   return 0;
+}
+Vous avez fait la même chose ? Parfait ! Vous êtes de futurs champions du C++ ! Voyons quand même ce que cela donne.
+
+Bienvenue dans le programme de calcul de a^b !
+Donnez une valeur pour a : 4
+Donnez une valeur pour b : 5
+4 ^ 5 = 1024
+
+
+####################################################################################     CONDITION 
+
+
+	Symbole ||Signification
+	1.==	||Est égal à
+	2.>	||Est supérieur à
+	3.<	||Est inférieur à
+	4.>=	||Est supérieur ou égal à
+	5.<-	||Est inférieur ou égal à
+	6.!=	||Est différent de
+##################################################################################### condition if 
+
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int nbEnfants(2);
+
+    if (nbEnfants > 0)
+    {
+        cout << "Vous avez des enfants, bravo !" << endl;
+    }
+
+    cout << "Fin du programme" << endl;
+    return 0;
+}
+REPONSE : Vous avez des enfants, bravo !
+	  Fin du programme
+################################################################################# condition if et else
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int nbEnfants(0);
+
+    if (nbEnfants > 0)
+    {
+        cout << "Vous avez des enfants, bravo !" << endl;
+    }
+    else
+    {
+        cout << "Eh bien alors, vous n'avez pas d'enfant ?" << endl;
+    }
+
+    cout << "Fin du programme" << endl;
+    return 0;
+}
+
+REPONSE : Eh bien alors, vous n'avez pas d'enfant ?
+	  Fin du programme
+
+################################################################################# condition else if
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int nbEnfants(2);
+
+    if (nbEnfants == 0)
+    {
+        cout << "Eh bien alors, vous n'avez pas d'enfant ?" << endl;
+    }
+    else if (nbEnfants == 1)
+    {
+        cout << "Alors, c'est pour quand le deuxieme ?" << endl;
+    }
+    else if (nbEnfants == 2)
+    {
+        cout << "Quels beaux enfants vous avez la !" << endl;
+    }
+    else
+    {
+        cout << "Bon, il faut arreter de faire des gosses maintenant !" << endl;
+    }
+
+    cout << "Fin du programme" << endl;
+    return 0;
+}
+
+REPONSE: Quels beaux enfants vous avez la !
+	 Fin du programme
+
+######################################################################## Condition switch ( fait la meme affaire que else if mais d'auntre autre facon)
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int nbEnfants(2);
+
+    switch (nbEnfants)
+    {
+        case 0:
+            cout << "Eh bien alors, vous n'avez pas d'enfant ?" << endl;
+            break;
+
+        case 1:
+            cout << "Alors, c'est pour quand le deuxieme ?" << endl;
+            break;
+
+        case 2:
+            cout << "Quels beaux enfants vous avez la !" << endl;
+            break;
+
+        default:
+            cout << "Bon, il faut arreter de faire des gosses maintenant !" << endl;
+            break;
+    }
+
+    return 0;
+}
+
+
+REPONSE : Quels beaux enfants vous avez la !
+
+######################################################################################################## BOLLEENS ET COMBINAISON DE CONDITION
+
+bool adulte(true);
+
+if (adulte)
+{
+    cout << "Vous etes un adulte !" << endl;
+}
+
+REPONSE : Vous etes un adulte
+
+## combiner des conditions 
+
+
+	&&  	 ET
+	||	OU
+	!	NON
+
+## test ET
+
+if (adulte && nbEnfants >= 1)
+Les deux symboles && signifient « ET ». 
+Notre condition se dirait en français : « Si la personne est adulte ET si le nombre d'enfants est supérieur ou égal à 1 ».
+
+## tes OU
+
+On peut par exemple tester si le nombre d'enfants est égal à 1 OU 2 :
+
+if (nbEnfants == 1 || nbEnfants == 2)
+
+## test NON
+
+if (!adulte)
+
+#################################################################################################### LES BOUCLES 
+
+Les boucles vous permettent de répéter les mêmes instructions plusieurs fois dans votre programme. Le principe est représenté en figure suivante.
+https://openclassrooms.com/courses/programmez-avec-le-langage-c/les-structures-de-controle-4#/id/r-1905461
+
+
+1.l'ordinateur lit les instructions de haut en bas (comme d'habitude) ;
+2.puis, une fois arrivé à la fin de la boucle, il repart à la première instruction ;
+3.il recommence alors à lire les instructions de haut en bas... ;
+... et il repart au début de la boucle.
+
+Les boucles sont répétées tant qu'une condition est vraie. Par exemple on peut faire une boucle qui dit : « Tant que l'utilisateur donne un nombre d'enfants inférieur à 0, redemander le nombre d'enfants ».
+
+Il existe 3 types de boucles à connaître :
+
+while ;
+do ... while ;
+for.
+
+#################################################################################################### boucle while
+
+while (condition)
+{
+    /* Instructions à répéter */
+}
+
+
+
+exemple ::::
+int main()
+{
+    int nbEnfants(-1); // Nombre négatif pour pouvoir entrer dans la boucle
+
+    while (nbEnfants < 0)
+    {
+        cout << "Combien d'enfants avez-vous ?" << endl;
+        cin >> nbEnfants;
+    }
+
+    cout << "Merci d'avoir indique un nombre d'enfants correct. Vous en avez " << nbEnfants << endl;
+
+    return 0;
+}
+Voici un exemple d'utilisation de ce programme :
+REPONSE :::
+
+
+Combien d'enfants avez-vous ?
+-3
+Combien d'enfants avez-vous ?
+-5
+Combien d'enfants avez-vous ?
+2
+
+
+
+
+##############################################################################################  BOUCLE DO ... WHILE
+
+Cette boucle est très similaire à la précédente... si ce n'est que la condition n'est testée qu'à la fin. Cela signifie que le contenu de la boucle sera toujours lu au moins une fois.
+
+Cette boucle prend la forme suivante :
+
+do
+{
+    /* Instructions */
+} while (condition);
+Notez bien la présence du point-virgule tout à la fin !
+
+Reprenons le code précédent et utilisons cette fois un do ... while :
+
+int main()
+{
+    int nbEnfants(0);
+
+    do
+    {
+        cout << "Combien d'enfants avez-vous ?" << endl;
+        cin >> nbEnfants;
+    } while (nbEnfants < 0);
+
+    cout << "Merci d'avoir indique un nombre d'enfants correct. Vous en avez " << nbEnfants << endl;
+
+    return 0;
+}
+
+Ce type de boucle, que l'on retrouve fréquemment, permet de condenser :
+
+une initialisation ;
+une condition ;
+une incrémentation.
+
+Voici sa forme :
+
+for (initialisation ; condition ; incrementation)
+{
+
+}
+
+
+
+exemple :::;;;;::::
+
+int main()
+{
+    int compteur(0);
+
+    for (compteur = 0 ; compteur < 10 ; compteur++)
+    {
+        cout << compteur << endl;
+    }
+
+    return 0;
+}
+Ce code affiche :
+REPONSE :::::
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+Une initialisation (compteur = 0) : la variable compteur est mise à 0 au tout début de la boucle. Notez que cela avait été fait à la ligne immédiatement au-dessus, ce n'était donc pas vraiment nécessaire ici.
+Une condition (compteur < 10) : on vérifie que la variable compteur est inférieure à 10 à chaque nouveau tour de boucle.
+Une incrémentation (compteur++) : à chaque tour de boucle, on ajoute 1 à la variable compteur ! Voilà pourquoi on voit s'afficher à l'écran des nombres de 0 à 9.
+
+CONCLUSION ::::
+
+
+La boucle for est généralement utilisée lorsqu'on sait combien de fois on souhaite répéter les instructions, tandis que while et do... while sont plutôt utilisées 
+lorsqu'on souhaite répéter des instructions jusqu'à ce qu'une condition spécifique soit vérifiée.
+
+
+############################################################################################ fonction 
+On appelle fonction un sous-programme qui permet d'effectuer un ensemble d'instructions par simple appel de la fonction dans le corps du programme principal.
+
+type nomFonction(arguments)
+{
+    //Instructions effectuées par la fonction
+}
+
+
+Le premier élément est le type de retour. Il permet d'indiquer le type de variable renvoyée par la fonction. Si votre fonction doit renvoyer du texte, alors ce sera string ; si votre fonction effectue un calcul, alors ce sera int ou double.
+Le deuxième élément est le nom de la fonction. Vous connaissez déjà main(), pow() ou sqrt(). L'important est de choisir un nom de fonction qui décrit bien ce qu'elle fait, comme pour les variables, en fait.
+Entre les parenthèses, on trouve la liste des arguments de la fonction. Ce sont les données avec lesquelles la fonction va travailler. Il peut y avoir un argument (comme pour sqrt()), plusieurs arguments (comme pour pow()) ou aucun argument (comme pour main()).
+Finalement, il y a des accolades qui délimitent le contenu de la fonction. Toutes les opérations qui seront effectuées se trouvent entre les deux accolades.4
+
+## fonction tous simple
+
+Une fonction toute simple
+
+Commençons par une fonction basique. Une fonction qui reçoit un nombre entier, ajoute 2 à ce nombre et le renvoie.
+
+int ajouteDeux(int nombreRecu)
+{
+    int valeur(nombreRecu + 2);
+    //On crée une case en mémoire
+    //On prend le nombre reçu en argument, on lui ajoute 2
+    //Et on met tout cela dans la mémoire
+
+    return valeur;
+    //On indique que la valeur qui sort de la fonction
+    //Est la valeur de la variable 'valeur'
+}
+Il n'y a pas de point-virgule ! Ni après la déclaration, ni après l'accolade fermante.
+
+
+## apelle d'une fonction 
+
+
+#include <iostream>
+using namespace std;
+
+int ajouteDeux(int nombreRecu)
+{
+    int valeur(nombreRecu + 2);
+
+    return valeur;
+}
+
+int main()
+{
+    int a(2),b(2);
+    cout << "Valeur de a : " << a << endl;
+    cout << "Valeur de b : " << b << endl;
+    b = ajouteDeux(a); //Appel de la fonction
+    cout << "Valeur de a : " << a << endl;
+    cout << "Valeur de b : " << b << endl;
+
+    return 0;
+}
+
+REPONSE ::
+
+Valeur de a : 2
+Valeur de b : 2
+Valeur de a : 2
+Valeur de b : 4
+
+
+
+########### ..................................................
